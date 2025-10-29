@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Node/Vite (frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+
+# Generic build artifacts
+dist/
+build/
+coverage/
+
+# Go build artifacts
+backend/bin/
+backend/build/
+backend/dist/
+*.exe
+*.dll
+*.test
+*.out
+
+# Env / secrets (any folder)
+**/.env
+**/.env.*
+*.local

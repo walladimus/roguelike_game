@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Roguelike Arena</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <style>
+            body {
+                background: #0f0f10;
+                color: #f0f0f0;
+                font-family: system-ui, Arial, Helvetica, sans-serif;
+                display: grid;
+                place-items: center;
+                min-height: 100vh;
+            }
+
+            .card {
+                background: #1a1a1d;
+                border: 1px solid #2a2a2e;
+                border-radius: 12px;
+                padding: 1.5rem 2rem;
+                min-width: 200px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.7)
+            }
+
+            .title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                color: #8e8e94;
+                margin-bottom: 1rem;
+            }
+
+            .status {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                color: #c8c8cc;
+                background: #242428;
+                border-radius: 8px;
+                padding: 0.5rem 0.75rem;
+                white-space: pre-line;
+            }
+
+            .status.ok {
+                color: #8aff8a;
+            }
+
+            .status.error {
+                color: #ff6b6b;
+            }
+            </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="title">Roguelike Arena</div>
+            <div class="subtitle">Prototype Main Menu</div>
+
+            <div id="server-status" class="status">Checking server...</div>
+        </div>
+
+        <script type="module" src="./main.ts"></script>
+    </body>       
+</html>
