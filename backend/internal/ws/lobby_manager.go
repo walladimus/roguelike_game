@@ -27,7 +27,7 @@ func (m *LobbyManager) GetOrCreate(code string) *Hub {
 		return h
 	}
 
-	h = NewHub()
+	h  = NewHub()
 	m.hubs[code] = h
 	return h
 }
@@ -52,4 +52,13 @@ func (m *LobbyManager) RemoveIfEmpty(code string) bool {
 		return true
 	}
 	return false
+}
+
+//calls fn for every lobby under a lock
+func (m *LobbyManager) ForEach(fn func(code string, h *Hub)) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	for code, h := range m.hubs {
+		fn(code, h)
+	}
 }
