@@ -35,7 +35,7 @@ Achievements can award:
 | MERCILESS | Merciless | Eliminate every other player in a Competitive match. | Title: "The Merciless" |
 | SHOPPING_SPREE | Shopping Spree | Buy something from every Seller tier in one run. | Cosmetic token |
 | ENCHANTED_RUN | Fully Enchanted | Find and use every Enchanter/Upgrader in a run. | Unlocks secret ending path. |
-| TRUE_SURVIVOR | Last Man Laughing | Beat a Boss after every other teammate has died. | Title: "Laatste man die lacht" |
+| LAST_MAN | Last Man Laughing | Beat a Boss after every other teammate has died. | Title: "Laatste man die lacht" |
 
 ---
 
