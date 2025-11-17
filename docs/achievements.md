@@ -30,12 +30,12 @@ Achievements can award:
 | TEAM_PLAYER | Team Player | Heal or revive 3 teammates in a single run. | Emblem: Helping Hand |
 | ALONE_WOLF | Lone Wolf | Complete a full PvE round solo without taking damage. | Cosmetic badge |
 | KILLSTREAK | Killstreak! | Eliminate 10 enemies within 30 seconds. | +1% movement speed (Rogue only) |
-| ARENA_MASTER | Arena Master | Win 3 PvP rounds in a row. | Title: "Arena Master" |
-| CLUTCH_OR_KICK | Clutch or Kick | Win a PvP round with <10 HP remaining. | Emote: /clutch |
+| ARENA_MASTER | Arena Master | Win 10 or more PvP rounds in a row. | Title: "Arena Master" |
+| CLUTCH_OR_BUCKET | Clutch or Bucket | Win a PvP round with <10 HP remaining. | Emote: /clutch |
 | MERCILESS | Merciless | Eliminate every other player in a Competitive match. | Title: "The Merciless" |
 | SHOPPING_SPREE | Shopping Spree | Buy something from every Seller tier in one run. | Cosmetic token |
 | ENCHANTED_RUN | Fully Enchanted | Find and use every Enchanter/Upgrader in a run. | Unlocks secret ending path. |
-| TRUE_SURVIVOR | True Survivor | Beat a Boss after every teammate has died. | Title: "True Survivor" |
+| TRUE_SURVIVOR | Last Man Laughing | Beat a Boss after every other teammate has died. | Title: "Laatste man die lacht" |
 
 ---
 
@@ -49,7 +49,7 @@ Some endings can overlap with secret achievement paths.
 | Code | Name | Unlock Condition | Replayable? | Notes |
 |:-----|:------|:-----------------|:-------------|:------|
 | ENDING_A | **Redemption** | Complete Story Mode defeating the final Boss with *zero team deaths*. | ✅ | Canon “good” ending. |
-| ENDING_B | **Sacrifice** | Sacrifice yourself to revive all teammates at the final Boss. | ✅ | Heroic ending; your character is memorialised in the credits. |
+| ENDING_B | **Sacrifice** | Sacrifice yourself to revive all teammates at the final Boss. | ✅ | Heroic ending; your character is memorialised in the credits. (first 10,000) |
 | ENDING_C | **Corruption** | Betray or kill a teammate to survive the final PvP round. | ✅ | Dark ending; unlocks special dialogue in later runs. |
 | ENDING_D | **Isolation** | Complete the story entirely solo — no allies, no summons, no revives. | ✅ | Lone-wolf route; unique intro quote next run. |
 | ENDING_E | **Descent** | Fail the True Boss encounter after reaching the “Deep Core” stage. | ✅ | Tragic ending; unlocks corrupted visual effects. |
