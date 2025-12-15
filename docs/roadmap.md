@@ -17,6 +17,7 @@ This is the order we will build the game so that it's playable as early as possi
   - Backend: Go HTTP + WebSocket
   - DB: Postgres (or SQLite for dev)
 - Shared types folder planned
+- Visual treatment: commit to pre-rendered assets and a nostalgic 2000-2004 presentation so art/systems decisions align early.
 
 Goal: Alignment. Everyone knows what game we’re making.
 
@@ -26,13 +27,13 @@ Goal: Alignment. Everyone knows what game we’re making.
 Backend:
 - `/health` (returns `{ ok: true }`)
 - `/version` (returns build version)
-- WebSocket `/ws/lobby` (echo server, just to prove realtime works)
+- WebSocket `/ws/lobby?lobby=CODE` (multi-lobby hub). Clients send `{"type":"JOIN","data":{"username":"..."}}` on connect; server rebroadcasts chat and `LOBBYSTATE { lobbyCode, members: [{ username, ready }] }` to everyone in that lobby.
 
 Frontend:
 - Main Menu UI:
   - Game title
   - Buttons: Play / Achievements / Friends / Settings / Notices / Coffee
-  - “Play” shows Create / Join menu (non-functional)
+  - Play shows Create / Join menu (non-functional)
 - Connect to `/health` just to prove backend reachability
 
 Goal: You can open the game in a browser, see the menu, and know the server is alive.
@@ -44,12 +45,12 @@ Database:
 - Add `users`, `friends`, `lobbies`, `lobby_members`, `player_stats`, `achievements`, `user_achievements`, `notices`, `player_requests`.
 
 Backend:
-- `POST /auth/register`, `POST /auth/login` (basic username+password)
+- `POST /auth/register`, `POST /auth/login` (basic username+password; hashed, in-memory by default, Postgres when configured)
 - `POST /lobby/create`
 - `POST /lobby/join`
 - `GET /lobby/:code` → returns current members + ready state
 - WebSocket lobby channel:
-  - broadcast lobby state whenever someone joins / readies
+  - join with `?lobby=CODE`, send JOIN with username; server broadcasts `LOBBYSTATE { lobbyCode, members: [{ username, ready }] }` on join/leave/ready plus chat notices when players join/leave.
 
 Frontend:
 - “Create Game” form actually calls backend
@@ -85,7 +86,7 @@ Goal: We get the backbone of PvE→PvP→Boss flow and 5:4:1 logic working.
 ## Phase 4: Basic Combat Sandbox
 Frontend:
 - Implement a simple 2D arena view.
-- Player can move a rectangle around.
+- Player can move a rectangle around using the pre-rendered nostalgic art kit (keep mechanics simple while the renderer sells the look).
 - “Enemies” are dumb AI squares that move toward you.
 - HP and damage numbers exist locally.
 
@@ -125,3 +126,4 @@ We hit MVP when ALL of these are true:
 - You can move and take damage in PvE
 - There’s a basic reward loop (XP, drops)
 - Achievements can unlock and be viewed in the Achievements menu
+
