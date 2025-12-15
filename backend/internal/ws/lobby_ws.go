@@ -1,6 +1,7 @@
 package ws
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -15,10 +16,12 @@ func LobbyWSHandler(w http.ResponseWriter, r *http.Request) {
 
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
+		log.Printf("ws: upgrade failed lobby=%s err=%v", code, err)
 		return
 	}
+	log.Printf("ws: connected lobby=%s remote=%s", code, r.RemoteAddr)
 
 	//create client that self-registers and starts pumps
-	hub := lobbyManager.GetOrCreate(code) 
+	hub := lobbyManager.GetOrCreate(code)
 	NewClient(hub, conn, code)
 }

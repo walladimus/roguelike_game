@@ -1,10 +1,10 @@
 package ws
 
-//read only view of a lobby for debugging
+// read only view of a lobby for debugging
 type LobbyInfo struct {
-	Code string `json:"code"`
+	Code    string   `json:"code"`
 	Players []string `json:"players"`
-	Count int `json:"count"`
+	Count   int      `json:"count"`
 }
 
 func (m *LobbyManager) Snapshot() []LobbyInfo {
@@ -32,7 +32,7 @@ func (m *LobbyManager) Snapshot() []LobbyInfo {
 	return out
 }
 
-//exposes snapshot using package-level manager. prevents httpserver from depending on ws internals.
+// exposes snapshot using package-level manager. prevents httpserver from depending on ws internals.
 func SnapshotLobbies() []LobbyInfo {
 	return lobbyManager.Snapshot()
 }

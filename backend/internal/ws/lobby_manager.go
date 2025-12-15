@@ -4,20 +4,20 @@ import (
 	"sync"
 )
 
-//manages multiple Hub instances keyed by lobby code
+// manages multiple Hub instances keyed by lobby code
 type LobbyManager struct {
-	mu sync.Mutex
+	mu   sync.Mutex
 	hubs map[string]*Hub
 }
 
-//constructs a manager
+// constructs a manager
 func NewLobbyManager() *LobbyManager {
 	return &LobbyManager{
 		hubs: make(map[string]*Hub),
 	}
 }
 
-//returns the hub for a given code (created if missing)
+// returns the hub for a given code (created if missing)
 func (m *LobbyManager) GetOrCreate(code string) *Hub {
 	m.mu.Lock()
 	defer m.mu.Unlock()
@@ -27,12 +27,21 @@ func (m *LobbyManager) GetOrCreate(code string) *Hub {
 		return h
 	}
 
-	h  = NewHub()
+	h = NewHub()
 	m.hubs[code] = h
 	return h
 }
 
-//removes the hub for code if no clients are active (returns true)
+// Get returns the hub for a given code if it exists.
+func (m *LobbyManager) Get(code string) (*Hub, bool) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	h, ok := m.hubs[code]
+	return h, ok
+}
+
+// removes the hub for code if no clients are active (returns true)
 func (m *LobbyManager) RemoveIfEmpty(code string) bool {
 	m.mu.Lock()
 	defer m.mu.Unlock()
@@ -54,7 +63,7 @@ func (m *LobbyManager) RemoveIfEmpty(code string) bool {
 	return false
 }
 
-//calls fn for every lobby under a lock
+// calls fn for every lobby under a lock
 func (m *LobbyManager) ForEach(fn func(code string, h *Hub)) {
 	m.mu.Lock()
 	defer m.mu.Unlock()

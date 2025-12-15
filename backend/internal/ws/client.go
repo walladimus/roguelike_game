@@ -12,23 +12,23 @@ const (
 	//writewait = time allowed to write a message
 	//pongwait = time allowed to read the message
 	//pingPeriod = time to send pings
-	writeWait = 10 * time.Second
-	pongWait = 60 *time.Second
-	pingPeriod = (pongWait * 9)/10
+	writeWait      = 10 * time.Second
+	pongWait       = 60 * time.Second
+	pingPeriod     = (pongWait * 9) / 10
 	maxMessageSize = 512
 )
 
-//Client represents some connected websocket client
+// Client represents some connected websocket client
 type Client struct {
-	hub *Hub
+	hub  *Hub
 	conn *websocket.Conn
 	//buffered channel of outbound messages
-	send chan []byte
-	Username string
+	send      chan []byte
+	Username  string
 	LobbyCode string
 }
 
-//pumps messages from websocket to hub
+// pumps messages from websocket to hub
 func (c *Client) readPump() {
 	defer func() {
 		c.hub.Unregister(c)
@@ -37,6 +37,7 @@ func (c *Client) readPump() {
 		//update lobby via broadcast / attempt cleanup
 		c.hub.BroadcastLobbyState(c.LobbyCode)
 		_ = lobbyManager.RemoveIfEmpty(c.LobbyCode)
+		log.Printf("ws: disconnected lobby=%s user=%s", c.LobbyCode, c.Username)
 	}()
 
 	c.conn.SetReadLimit(maxMessageSize)
@@ -71,14 +72,16 @@ func (c *Client) readPump() {
 				c.Username = jd.Username
 			}
 			c.hub.BroadcastLobbyState(c.LobbyCode)
+			log.Printf("ws: join lobby=%s user=%s", c.LobbyCode, c.Username)
 
-			notice := Message{
-				Type: MessageTypeChat,
-				Data: map[string]string{"text": c.Username + " joined the lobby"},
+			//announcement for player join
+			joinNotice := ChatData{
+				Text: c.Username + " joined the lobby",
 			}
-			c.hub.BroadcastMessage(notice)
+			c.hub.BroadcastJSON(MessageTypeChat, joinNotice)
 
 		case MessageTypeLeave:
+			log.Printf("ws: leave lobby=%s user=%s", c.LobbyCode, c.Username)
 			c.hub.BroadcastMessage(incoming)
 
 		default:
@@ -87,7 +90,7 @@ func (c *Client) readPump() {
 	}
 }
 
-//writepump pumps messages from the hub to the websocket connection
+// writepump pumps messages from the hub to the websocket connection
 func (c *Client) writePump() {
 	ticker := time.NewTicker(pingPeriod)
 	defer func() {
@@ -109,7 +112,7 @@ func (c *Client) writePump() {
 			}
 
 		case <-ticker.C:
-			_= c.conn.SetWriteDeadline(time.Now().Add(writeWait))
+			_ = c.conn.SetWriteDeadline(time.Now().Add(writeWait))
 			if err := c.conn.WriteMessage(websocket.PingMessage, nil); err != nil {
 				return
 			}
@@ -117,13 +120,13 @@ func (c *Client) writePump() {
 	}
 }
 
-//makes a client, registers it with hub and starts the pumps
+// makes a client, registers it with hub and starts the pumps
 func NewClient(h *Hub, conn *websocket.Conn, lobbyCode string) *Client {
 	c := &Client{
-		hub: h,
-		conn: conn,
-		send: make(chan []byte, 256),
-		Username: "",
+		hub:       h,
+		conn:      conn,
+		send:      make(chan []byte, 256),
+		Username:  "",
 		LobbyCode: lobbyCode,
 	}
 

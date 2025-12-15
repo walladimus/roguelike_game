@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-//echohandler handles GET /ws/echo
+// echohandler handles GET /ws/echo
 func EchoHandler(w http.ResponseWriter, r *http.Request) {
 	// HTTP -> Websocket
 	conn, err := upgrader.Upgrade(w, r, nil)

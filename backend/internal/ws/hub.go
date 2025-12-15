@@ -1,14 +1,15 @@
 package ws
 
 import (
-	"sync"
 	"encoding/json"
+	"log"
+	"sync"
 )
 
 // Hub will manage all active websocket clients and broadcasts.
 // Right now it's just a skeleton so the project builds.
 type Hub struct {
-	mu      sync.Mutex      // protects the below maps
+	mu      sync.Mutex // protects the below maps
 	clients map[*Client]bool
 }
 
@@ -68,21 +69,23 @@ func (h *Hub) BroadcastMessage(m Message) {
 func (h *Hub) BroadcastLobbyState(lobbyCode string) {
 	// Collect player names under lock.
 	h.mu.Lock()
-	players := make([]string, 0, len(h.clients))
+	members := make([]LobbyMemberState, 0, len(h.clients))
 	for c := range h.clients {
+		name := c.Username
 		if c.Username != "" {
-			players = append(players, c.Username)
-		} else {
-			players = append(players, "anonymous")
+			name = c.Username
 		}
+		members = append(members, LobbyMemberState{Username: name, Ready: false})
 	}
 	h.mu.Unlock()
+
+	log.Printf("ws: lobby_state lobby=%s players=%d", lobbyCode, len(members))
 
 	h.BroadcastMessage(Message{
 		Type: MessageTypeLobbyState,
 		Data: LobbyState{
 			LobbyCode: lobbyCode,
-			Players:   players,
+			Members:   members,
 		},
 	})
 }

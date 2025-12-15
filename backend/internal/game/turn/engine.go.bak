@@ -1,0 +1,85 @@
+package turn
+
+import (
+	"sync"
+	"time"
+)
+
+//demo match
+var (
+	mu sync.Mutex
+	demo *Match
+)
+
+//create demo if missing
+func Init() *Match {
+	mu.Lock()
+	defer mu.Unlock()
+	if demo != nil {
+		return demo
+	}
+	now := time.Now().UTC()
+	demo = &Match{
+		ID: "DEMO",
+		Round: 1,
+		Phase: PhasePVE,
+		ActiveIndex: 0,
+		Players: []player{
+			{ID: "P1", Name: "Wallad", HP: 100, Alive: true},
+			{ID: "P2", Name: "Valisird", HP: 100, Alive: true},
+		},
+		CreatedAt: now,
+		UpdatedAt: now,
+		pveLeft: 5,
+	}
+	return demo
+}
+
+func Advance() *Match {
+	m := Init()
+	mu.Lock()
+	defer mu.Unlock()
+
+	// rotate player
+	if n := len(m.Players); n > 0 {
+		m.ActiveIndex = (m.ActiveIndex + 1) % n
+	}
+
+	//phase buckets
+	switch m.Phase {
+	case PhasePVE:
+		m.pveLeft--
+		m.pveLeft <= 0 {
+			m.Phase = PhasePVP
+			m.pvpLeft = 4
+		}
+
+	case PhasePVP:
+		m.pvpLeft--
+		if m.pvpLeft <= 0 {
+			m.Phase = PhaseBoss
+			m.bossLeft = 1
+		}
+
+	case PhaseBoss:
+		m.pvpLeft--
+		if m.pvpLeft <= 0 {
+			m.Round++
+			m.Phase = PhasePVE
+			m.pveLeft = 5
+		}
+	}
+
+	m.UpdatedAt = time.Now().UTC()
+	return m
+}
+
+// copy current state (read only)
+func Snapshot() Match {
+	_ = Init()
+	mu.Lock()
+	defer mu.Unlock()
+	cp := *demo
+	cp.Players = append([]Player(nil), demo.Players)
+	return cp
+}

@@ -1,0 +1,36 @@
+package turn
+
+import "time"
+
+// phase enum
+type Phase string
+
+const (
+	PhasePVE Phase = "PVE"
+	PhasePVP Phase = "PVP"
+	PhaseBoss Phase = "Boss"
+)
+
+//minimal player model
+type player struct {
+	ID string `json:"id"`
+	Name string `json:"name"`
+	HP int `json:"hp"`
+	Alive bool `json:"alive"`
+}
+
+//match state
+type Match struct {
+	ID string `json:"id"`
+	Round int `json:"round"`
+	Phase Phase `json:"phase"`
+	ActiveIndex int `json:"activeIndex"`
+	Players []player `json:"players"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+
+	//internal 5:4:1 counters (non-serialised)
+	pveLeft int `json:"-"`
+	pvpLeft int `json:"-"`
+	bossLeft int `json:"-"`
+}
