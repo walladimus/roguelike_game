@@ -5,7 +5,7 @@
 | **Document Version:** | 1.0 |
 | :--- | :--- |
 | **Last Updated:** | October 16, 2025 |
-| **Authors:** | Walladimus & Vališirdisent |
+| **Author/s:** | Walladimus |
 
 ---
 
