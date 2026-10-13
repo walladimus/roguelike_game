@@ -2,9 +2,9 @@
 
 ### **Game Design Document: Project Roguelike-Battler (Working Title)**
 
-| **Document Version:** | 1.0 |
+| **Document Version:** | 1.1 |
 | :--- | :--- |
-| **Last Updated:** | October 16, 2025 |
+| **Last Updated:** | October 13, 2026 |
 | **Author/s:** | Walladimus |
 
 ---
@@ -32,13 +32,13 @@
 
 ### **1. High Concept**
 
-**Project Rogue-Battle** is a browser-based roguelike action game for solo and multiplayer, blending cooperative PvE progression, competitive PvP battles, and epic Boss encounters into a single, seamless experience. Players will engage in a high-stakes gameplay loop of powering up, proving their skill against others, and teaming up to defeat massive foes. The core player fantasy is the thrill of discovering powerful, synergistic item builds and then using them to outplay opponents in dynamic combat.
+**Rogue** will be a roguelike action game for solo and multiplayer, blending cooperative PvE progression, competitive PvP battles, and Boss encounters into a single, seamless experience. Players will engage in a high-stakes gameplay loop of powering up, proving their skill against others, and teaming up to defeat massive foes. The core player fantasy is the thrill of discovering powerful, synergistic item builds and then using them to outplay opponents in dynamic combat.
 
 ---
 
 ### **2. Core Design Pillars**
 
-* **Accessible Action:** Browser-based with LAN and online support, designed to be highly performant on a wide range of hardware, including a dedicated "Performance Mode" for low-end systems.
+* **Accessible Action:** LAN and online support, designed to be highly performant on a wide range of hardware, including a dedicated "Performance Mode" for low-end systems.
 * **Deep Replayability:** A compelling core loop is enhanced by distinct game modes, procedural elements, and a deep item synergy system, ensuring no two runs are the same.
 * **Rewarding Challenge:** The difficulty scales intelligently, respecting player skill and strategy. The most demanding challenges yield the greatest rewards and unlock the game's true endings.
 * **Meaningful Social Connection:** An integrated friends system encourages players to connect, compete, and cooperate, building a strong community.
@@ -49,11 +49,11 @@
 
 The game progresses through a cycle of distinct phases, with performance in one directly influencing the next.
 
-* **The Cycle:** The game alternates primarily between PvE and PvP rounds. After a set number of PvE rounds, a cooperative Boss Round occurs, testing the lobby's collective strength.
+* **The Cycle:** The game alternates primarily between PvE and PvP rounds. After a set number of PvE rounds, a cooperative Boss Round occurs, testing the lobby's collective strength. The cycle roughly goes as follows: PVE, PVP (or PVE), PVE, PVP (or PVE) PVE, PVP (or PVE), PVP, Boss. However, this may be prone to change.
 * **Inter-phase Bonuses:**
     * **PvE Win -> PvP Advantage:** The top-performing player in a PvE round gains a bonus in the subsequent PvP round: **+5% EXP gain** and **+20% gold from player kills**.
     * **PvE Win -> Boss Advantage:** The top-performing player in a PvE round that precedes a Boss Round starts the boss fight with a **temporary one-hit shield**. This shield is destroyed after the encounter.
-
+    * **These benefits are largely for Rogue Mode.**
 ---
 
 ### **4. Game Modes**
@@ -79,8 +79,9 @@ The core, endlessly replayable experience. The lobby host can define key paramet
 #### **4.2. Story Mode**
 A curated, narrative-driven experience planned for the full release.
 
-* **Objective:** Follow a character's journey through a fixed number of challenging levels, culminating in one of several endings.
+* **Objective:** Follow a character's journey through a fixed number of challenging levels, culminating in one of 12 endings.
 * **Features:** Will include unique, story-specific achievements and lore.
+* **Gameplay:** Depending on lobby creator, you can get rid of the PVP mode, with a similar playstyle to the base game of Gunfire Reborn.
 
 ---
 
@@ -101,7 +102,7 @@ The item system is the heart of the roguelike experience. Design will prioritise
 ### **6. Social, UI, and Player Experience**
 
 #### **6.1. Friends System**
-A robust social hub allowing players to create accounts, add friends by username, view a "recently played with" list, and receive friend suggestions.
+A robust social hub allowing players to create accounts, add friends by username, view a "recently played with" list, and receive friend suggestions. Steam friends should be able to be added from the get go.
 
 #### **6.2. User Interface (UI) & Player Feedback**
 * **Main Menu:** A clean, intuitive interface with clear buttons: Play, Achievements, Friends, Settings, Notices & Requests, and a non-intrusive "Buy Me a Coffee" link.
@@ -112,13 +113,13 @@ A robust social hub allowing players to create accounts, add friends by username
 ### **7. Technical Specifications & Monetization**
 
 #### **7.1. Technical Goals**
-* **Platform:** Browser-based, playable with no downloads required.
+* **Platform:** Steam/Itch.io, playable but downloads required.
 * **Connectivity:** Supports both online multiplayer and local LAN play.
 * **Performance:** Highly optimised to run smoothly on low-end hardware. A dedicated graphics setting will toggle between "High Definition" and "Performance (Toaster)" modes.
 * **Map Design:** Maps will be large and tactically interesting but built with efficient assets to maintain high performance.
 
 #### **7.2. Monetization**
-The game will be free to play. Monetisation will be handled ethically through a **"Buy Me a Coffee"** donation model. Donors will receive unique but purely cosmetic, non-gameplay-altering perks as a thank you.
+The game will initially be free to play. Monetisation will be handled ethically through a **"Buy Me a Coffee"** donation model until official launch on Steam/Itch.io. Donors will receive unique but purely cosmetic, non-gameplay-altering perks as a gesture of goodwill.
 
 ---
 
