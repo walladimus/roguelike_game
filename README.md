@@ -1,8 +1,8 @@
 ***
 
-### **Game Design Document: Project Roguelike-Battler (Working Title)**
+### **Game Design Document: Kryia (Working Title)**
 
-| **Document Version:** | 1.1 |
+| **Document Version:** | 1.2 |
 | :--- | :--- |
 | **Last Updated:** | October 13, 2026 |
 | **Author/s:** | Walladimus |
@@ -17,7 +17,7 @@
     4.1. Rogue Mode
     4.2. Story Mode
 5.  **Player Progression & Systems**
-    5.1. Core Progression (Levels, Gold, Loot)
+    5.1. Core Progression (Levels, Kry (currency), Loot)
     5.2. Special In-Game Encounters
     5.3. Item & Upgrade Philosophy
 6.  **Social, UI, and Player Experience**
@@ -32,7 +32,7 @@
 
 ### **1. High Concept**
 
-**Rogue** will be a roguelike action game for solo and multiplayer, blending cooperative PvE progression, competitive PvP battles, and Boss encounters into a single, seamless experience. Players will engage in a high-stakes gameplay loop of powering up, proving their skill against others, and teaming up to defeat massive foes. The core player fantasy is the thrill of discovering powerful, synergistic item builds and then using them to outplay opponents in dynamic combat.
+**Kryia** will be a roguelike action game for solo and multiplayer, blending cooperative PvE progression, competitive PvP battles, and Boss encounters into a single, seamless experience. Players will engage in a high-stakes gameplay loop of powering up, proving their skill against others, and teaming up to defeat massive foes. The core player fantasy is the thrill of discovering powerful, synergistic item builds and then using them to outplay opponents in dynamic combat.
 
 ---
 
@@ -82,20 +82,22 @@ A curated, narrative-driven experience planned for the full release.
 * **Objective:** Follow a character's journey through a fixed number of challenging levels, culminating in one of 12 endings.
 * **Features:** Will include unique, story-specific achievements and lore.
 * **Gameplay:** Depending on lobby creator, you can get rid of the PVP mode, with a similar playstyle to the base game of Gunfire Reborn.
+* **Lore:** Kryia also represents Cryer, and the game's story mode should reflect this with the True ending being related to said topic.
 
 ---
 
 ### **5. Player Progression & Systems**
 
-#### **5.1. Core Progression (Levels, Gold, Loot)**
-Players grow stronger by fighting enemies and players, earning EXP to level up, Gold to spend, and Loot to equip. Enemy difficulty and loot quality scale as the run progresses.
+#### **5.1. Core Progression (Levels, Kry, Loot)**
+Players grow stronger by fighting enemies and players, earning EXP to level up, Kry to spend, and Loot to equip. Enemy difficulty and loot quality scale as the run progresses.
 
 #### **5.2. Special In-Game Encounters**
 * **The Seller:** An NPC merchant who appears periodically, selling weapons, healing, and upgrades for gold.
 * **The Enchanter/Upgrader:** A rare NPC hidden in the environment. Can upgrade a weapon's base stats or enchant it with powerful, unique modifiers. Finding all Enchanters in a single run unlocks a secret ending.
+* **The Crying One:** A rare, hidden NPC who can allow for sacrifices in order to boost other things. When interacted with after gaining all other endings, in the final zone/area, you will have a scene resulting in the final ending.
 
 #### **5.3. Item & Upgrade Philosophy**
-The item system is the heart of the roguelike experience. Design will prioritise **synergy over linear stat increases**. The goal is to create a rich ecosystem of items and abilities that interact in powerful and unexpected ways, rewarding players who experiment and discover game-breaking combinations.
+The item system is the heart of the roguelike experience. Design will prioritise **synergy over linear stat increases**. The goal is to create a rich ecosystem of items and abilities that interact in powerful and unexpected ways, rewarding players who experiment and discover influential combinations.
 
 ---
 
@@ -115,16 +117,16 @@ A robust social hub allowing players to create accounts, add friends by username
 #### **7.1. Technical Goals**
 * **Platform:** Steam/Itch.io, playable but downloads required.
 * **Connectivity:** Supports both online multiplayer and local LAN play.
-* **Performance:** Highly optimised to run smoothly on low-end hardware. A dedicated graphics setting will toggle between "High Definition" and "Performance (Toaster)" modes.
-* **Map Design:** Maps will be large and tactically interesting but built with efficient assets to maintain high performance.
+* **Performance:** Highly optimised to run smoothly on low-end hardware, but with good enough graphics to be great on high-end devices. A dedicated graphics setting will toggle between "High Definition" and "Performance (Toaster)" modes.
+* **Map Design:** Maps will be large and tactically interesting but built with efficient assets to maintain high performance. There will later be different environments.
 
 #### **7.2. Monetization**
-The game will initially be free to play. Monetisation will be handled ethically through a **"Buy Me a Coffee"** donation model until official launch on Steam/Itch.io. Donors will receive unique but purely cosmetic, non-gameplay-altering perks as a gesture of goodwill.
+The game will initially be free to play during Beta & Alpha versions with playtesting considered. Monetisation will be handled ethically through a **"Buy Me a Coffee"** donation model until official launch on Steam/Itch.io. Donors will receive unique but purely cosmetic, non-gameplay-altering perks as a gesture of goodwill.
 
 ---
 
 ### **8. Development Roadmap & Future Vision**
 
 * **Phase 1: Core Development:** The primary focus is on building and polishing the complete **Rogue Mode** as the foundational pillar of the game. The Story Mode will be developed in parallel.
-* **Phase 2: Launch:** The game will launch with **both the Rogue Mode and Story Mode fully implemented.** This ensures a content-rich experience for all players from day one and establishes a stable meta.
-* **Post-Launch Vision:** The first major planned expansion is **"Versus Mode,"** a team-based mode designed to support distinct character roles (Tank, Support, etc.) and encourage strategic, cooperative team play.
+* **Phase 2: Launch:** The game will launch with **both the Rogue Mode and Story Mode fully implemented.** This ensures a content-rich experience for all players from day one and establishes a stable meta. In addition, there must be a reliable audience for the game pre-MVP (ideally in Beta).
+* **Post-Launch Vision:** ~~The first major planned expansion is **"Versus Mode,"** a team-based mode designed to support distinct character roles (Tank, Support, etc.) and encourage strategic, cooperative team play.~~ This will be revisited later on down the development.
